@@ -42,4 +42,5 @@ public class Client {
 	public void setGroup(String group) {
 		this.group = group;
 	}
+
 }

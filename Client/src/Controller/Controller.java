@@ -14,7 +14,6 @@ public class Controller {
 	Button welcomeClick;
 
 	public void got_clicked(){
-//		System.out.println("Hi");
 
 		Parent root = null;
 		try {
@@ -23,6 +22,8 @@ public class Controller {
 			e.printStackTrace();
 		}
 		Main.PRIMARYSTAGE.setScene(new Scene(root,Main.WIDTH,Main.HEIGHT));
+
+		System.out.println("Screen Changed to scene 1");
 
 //		Main.MAIN.setRoot(root);
 //		welcomeClick.getParent().getParent().getScene().getWindow();

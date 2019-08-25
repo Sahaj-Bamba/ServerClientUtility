@@ -15,7 +15,8 @@ public class Controller2 {
 //	Button welcomeClick;
 
 	public void create_room(){
-		System.out.println("Hi");
+
+		System.out.println("Room Joining initiated");
 
 		Parent root = null;
 		try {
@@ -28,7 +29,7 @@ public class Controller2 {
 	}
 
 	public void join_room(){
-		System.out.println("Helo");
+		System.out.println("Room Creating Initiated");
 
 		Parent root = null;
 		try {
