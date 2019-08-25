@@ -8,13 +8,24 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public static Stage PRIMARYSTAGE;
+    public static Scene MAIN;
+    public static Client GAMER;
+    public static int HEIGHT = 800;
+    public static int WIDTH = 1200;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/sample.fxml"));
+        PRIMARYSTAGE = primaryStage;
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        MAIN = new Scene(root, WIDTH, HEIGHT);
+        primaryStage.setScene(MAIN);
         primaryStage.show();
-        primaryStage.setFullScreen(true);
+
+//        primaryStage.setFullScreen(true);
+
     }
 
 
