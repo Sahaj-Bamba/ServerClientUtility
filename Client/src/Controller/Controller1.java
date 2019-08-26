@@ -1,5 +1,6 @@
 package Controller;
 
+import Request.WhoIAm;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,6 +24,13 @@ public class Controller1 {
 		Main.GAMER = new Client(ip.getText() ,parseInt(port.getText()), name.getText());
 
 		System.out.println("Client connection Created");
+
+		try {
+			Main.GAMER.sendMessage(new WhoIAm(name.getText()));
+			System.out.println("Name sent to server");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		Parent root = null;
 		try {
