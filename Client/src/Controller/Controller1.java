@@ -19,14 +19,14 @@ public class Controller1 {
 	TextField name;
 
 	public void submit(){
-//		System.out.println("1");
+		System.out.println("1");
+		System.out.println(ip.getText());
 
 		Main.GAMER = new Client(ip.getText() ,parseInt(port.getText()), name.getText());
-
 		System.out.println("Client connection Created");
 
 		try {
-			Main.GAMER.sendMessage(new WhoIAm(name.getText()));
+			Main.GAMER.send_message(new WhoIAm(name.getText()));
 			System.out.println("Name sent to server");
 		} catch (IOException e) {
 			e.printStackTrace();

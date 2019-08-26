@@ -14,6 +14,7 @@ public class Client {
 	public Client(String ip, int port, String name) {
 		try {
 			this.name = name;
+			System.out.println(name);
 			this.socket = new Socket(ip, port);
 			this.objectInputStream = new ObjectInputStream(socket.getInputStream());
 			this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
@@ -26,20 +27,24 @@ public class Client {
 		}
 	}
 
-	public void sendMessage(Object object) throws IOException {
+	public void send_message(Object object) throws IOException {
 		objectOutputStream.writeObject(object);
 		objectOutputStream.flush();
 	}
 
-	public String getName() {
+	public Object receive_message() throws IOException, ClassNotFoundException {
+		return (Object) objectInputStream.readObject();
+	}
+
+	public String get_name() {
 		return name;
 	}
 
-	public String getGroup() {
+	public String get_group() {
 		return group;
 	}
 
-	public void setGroup(String group) {
+	public void set_group(String group) {
 		this.group = group;
 	}
 

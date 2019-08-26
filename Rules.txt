@@ -1,0 +1,11 @@
+
+
+	Classes Name initial Caps CamelCase
+
+	Objects Name initial small camelCase
+
+	Functions Name small snake case
+
+	Enums All caps
+
+	Public Static members ALLCAPS

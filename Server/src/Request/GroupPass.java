@@ -4,20 +4,26 @@ import Constant.Request;
 
 public class GroupPass {
 
+	private String clientName;
 	private String password;
 	private String groupName;
 
-	public GroupPass(String password, String groupName){
+	public GroupPass(String password, String groupName, String clientName){
 		this.password = password;
 		this.groupName = groupName;
+		this.clientName = clientName;
 	}
 
-	public String getPassword() {
+	public String get_password() {
 		return password;
 	}
 
-	public String getGroupName() {
+	public String get_group_name() {
 		return groupName;
+	}
+
+	public String get_client_name() {
+		return clientName;
 	}
 
 	@Override
