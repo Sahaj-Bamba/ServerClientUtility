@@ -1,0 +1,10 @@
+
+
+
+		Destructors in removal functions.
+
+		Token encryption security db etc.
+
+		Front end ui designing.
+
+		

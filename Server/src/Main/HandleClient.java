@@ -4,6 +4,7 @@ import Constant.Request;
 import Request.GroupPass;
 import Request.Response;
 import Request.WhoIAm;
+import Request.GroupList;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -70,8 +71,10 @@ public class HandleClient implements Runnable{
 
 				if (req.equals(Request.GROUPPASS)  ){
 
+					System.out.println("Group creation request");
+
 					do {
-						GroupPass ob2 = (GroupPass) objectInputStream.readObject();
+						GroupPass ob2 = (GroupPass) message;
 						if(GAMER.add_group(ob2.get_group_name(),ob2.get_password())){
 							GAMER.send_message(new Response(0,""),ob2.get_group_name(),ob2.get_client_name());
 							flag = false;
@@ -87,7 +90,12 @@ public class HandleClient implements Runnable{
 					}while(flag);
 
 				}else if (req.equals(Request.GROUPLIST)){
-					GAMER.send_message("extra","");
+
+					System.out.println("Group list Request");
+
+					GroupList ob3 = (GroupList)(message);
+					GAMER.send_message((Object)GAMER.get_group_list(),ob3.getter());
+
 				}
 
 

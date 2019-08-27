@@ -1,5 +1,6 @@
 package Main;
 
+import Request.ClientToken;
 import Request.GroupList;
 
 import java.io.ObjectOutputStream;
@@ -74,6 +75,13 @@ public class Owner {
 	public boolean send_message(Object message,String groupName, String clientName){
 		if (group_exist(groupName)){
 			return groups.get(groupName).send_message(message,clientName);
+		}
+		return false;
+	}
+
+	public boolean send_message(Object message, ClientToken clientToken){
+		if (group_exist(clientToken.getGroupName())){
+			return groups.get(clientToken.getGroupName()).send_message(message,clientToken.getClientName());
 		}
 		return false;
 	}

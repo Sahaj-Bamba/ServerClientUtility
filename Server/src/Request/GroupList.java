@@ -5,11 +5,17 @@ import Constant.Request;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GroupList implements Serializable {
+public class GroupList extends ClientToken implements Serializable {
 
 	private ArrayList<String> groups;
 
+	public GroupList(ClientToken clientToken) {
+		super(clientToken);
+		this.groups = new ArrayList<String>();
+	}
+
 	public GroupList() {
+		super();
 		this.groups = new ArrayList<String>();
 	}
 
