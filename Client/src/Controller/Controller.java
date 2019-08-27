@@ -11,7 +11,6 @@ import java.io.IOException;
 
 public class Controller {
 
-	Button welcomeClick;
 
 	public void got_clicked(){
 

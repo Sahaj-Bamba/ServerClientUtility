@@ -1,5 +1,6 @@
 package Main;
 
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -21,8 +22,8 @@ public class Group {
 		return true;
 	}
 
-	public void add_client(String name){
-		clients.put(name, new Client(name));
+	public void add_client(String name, ObjectOutputStream objectOutputStream){
+		clients.put(name, new Client(name,objectOutputStream));
 	}
 
 	public void remove_client(String name){

@@ -2,7 +2,9 @@ package Request;
 
 import Constant.Request;
 
-public class GroupPass {
+import java.io.Serializable;
+
+public class GroupPass implements Serializable {
 
 	private String clientName;
 	private String password;

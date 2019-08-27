@@ -2,7 +2,9 @@ package Request;
 
 import Constant.Request;
 
-public class WhoIAm {
+import java.io.Serializable;
+
+public class WhoIAm implements Serializable {
 
 	private String name;
 

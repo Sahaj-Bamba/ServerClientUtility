@@ -14,10 +14,12 @@ public class Client {
 	public Client(String ip, int port, String name) {
 		try {
 			this.name = name;
-			System.out.println(name);
 			this.socket = new Socket(ip, port);
-			this.objectInputStream = new ObjectInputStream(socket.getInputStream());
+			System.out.println(name);
 			this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+			System.out.println(name);
+			this.objectInputStream = new ObjectInputStream(socket.getInputStream());
+			System.out.println("Input stream created");
 
 			System.out.println("Client created.");
 			System.out.println("Enter name of client.");

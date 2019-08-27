@@ -1,16 +1,20 @@
 package Controller;
 
 import Request.GroupPass;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
-import java.awt.*;
 import java.io.IOException;
 
 import static sample.Main.GAMER;
 
 public class Controller3_1 {
 
-	private TextField name;
-	private TextField password;
+	@FXML
+	TextField name;
+
+	@FXML
+	TextField password;
 
 	public void submit(){
 		System.out.println("3_1 Hi");

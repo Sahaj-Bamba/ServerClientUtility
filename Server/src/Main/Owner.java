@@ -1,5 +1,8 @@
 package Main;
 
+import Request.GroupList;
+
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -7,10 +10,12 @@ import java.util.Map;
 public class Owner {
 
 	private HashMap<String,Group> groups;
+	private GroupList groupList;
 
 	public Owner(){
 		groups = new HashMap<String, Group>();
 		groups.put("extra",new Group("extra",""));
+		groupList = new GroupList();
 	}
 
 	public boolean add_group(String name,String password){
@@ -18,16 +23,22 @@ public class Owner {
 			return false;
 		}
 		groups.put("extra",new Group(name,password));
+		groupList.add(name);
 		return true;
 	}
 
 	public void remove_group(String name){
 		groups.remove(name);
+		groupList.remove(name);
 	}
 
-	public void add_client(String groupName, String clientName){
+	public GroupList get_group_list() {
+		return groupList;
+	}
+
+	public void add_client(String groupName, String clientName, ObjectOutputStream objectOutputStream){
 		if (group_exist(groupName)){
-			groups.get(groupName).add_client(clientName);
+			groups.get(groupName).add_client(clientName,objectOutputStream);
 		}
 	}
 

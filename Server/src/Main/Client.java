@@ -10,13 +10,9 @@ public class Client {
 	private Socket socket;
 	private ObjectOutputStream objectOutputStream;
 
-	public Client(String name){
+	public Client(String name, ObjectOutputStream objectOutputStream){
 		this.name = name;
-		try {
-			objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.objectOutputStream = objectOutputStream;
 	}
 
 	public boolean send_message(Object message) {

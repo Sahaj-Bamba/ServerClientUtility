@@ -1,6 +1,7 @@
 package Controller;
 
 import Request.WhoIAm;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,8 +15,13 @@ import static java.lang.Integer.parseInt;
 
 public class Controller1 {
 
+	@FXML
 	TextField ip;
+
+	@FXML
 	TextField port;
+
+	@FXML
 	TextField name;
 
 	public void submit(){

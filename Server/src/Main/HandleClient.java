@@ -1,11 +1,13 @@
 package Main;
 
+import Constant.Request;
 import Request.GroupPass;
 import Request.Response;
 import Request.WhoIAm;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import static Main.Main.GAMER;
@@ -14,11 +16,13 @@ public class HandleClient implements Runnable{
 
 	private Socket socket;
 	private ObjectInputStream objectInputStream;
+	private ObjectOutputStream objectOutputStream;
 
 	public HandleClient(Socket socket) {
 		this.socket = socket;
 		try {
 			objectInputStream = new ObjectInputStream(socket.getInputStream());
+			objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -44,24 +48,8 @@ public class HandleClient implements Runnable{
 		try {
 
 			WhoIAm ob1 = (WhoIAm) objectInputStream.readObject();
-			GAMER.add_client("extra", ob1.getName());
+			GAMER.add_client("extra", ob1.getName(),objectOutputStream);
 			System.out.println("Client Got and name set");
-
-			do {
-				GroupPass ob2 = (GroupPass) objectInputStream.readObject();
-				if(GAMER.add_group(ob2.get_group_name(),ob2.get_password())){
-					GAMER.send_message(new Response(0,""),);
-					flag = false;
-					GAMER.remove_client("extra",ob2.get_client_name());
-					GAMER.add_client(ob2.get_group_name(),ob2.get_client_name());
-					System.out.println("Client successfully added to the specified group");
-				}
-				else{
-					flag = true;
-					GAMER.send_message(new Response(1,"Group already exist please try a new name."));
-					System.out.println("There was a problem retrying");
-				}
-			}while(flag);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -75,7 +63,41 @@ public class HandleClient implements Runnable{
 				Object message = (Object) objectInputStream.readObject();
 				System.out.println("Message received");
 
-//				if ()
+
+				/*      If Else for server handelling           */
+
+				String req = (String) message.toString();
+
+				if (req.equals(Request.GROUPPASS)  ){
+
+					do {
+						GroupPass ob2 = (GroupPass) objectInputStream.readObject();
+						if(GAMER.add_group(ob2.get_group_name(),ob2.get_password())){
+							GAMER.send_message(new Response(0,""),ob2.get_group_name(),ob2.get_client_name());
+							flag = false;
+							GAMER.remove_client("extra",ob2.get_client_name());
+							GAMER.add_client(ob2.get_group_name(),ob2.get_client_name(),objectOutputStream);
+							System.out.println("Client successfully added to the specified group");
+						}
+						else{
+							flag = true;
+							GAMER.send_message(new Response(1,"Group already exist please try a new name."),ob2.get_group_name(),ob2.get_client_name());
+							System.out.println("There was a problem retrying");
+						}
+					}while(flag);
+
+				}else if (req.equals(Request.GROUPLIST)){
+					GAMER.send_message("extra","");
+				}
+
+
+
+
+
+
+
+
+
 
 				/*  Do Rest of processing on the object here    */
 
