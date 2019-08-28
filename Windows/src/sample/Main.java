@@ -3,8 +3,11 @@ package sample;
 import Windows.ConfirmBox;
 import Windows.ListBox;
 import javafx.application.Application;
+import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import Windows.AlertBox;
+
+import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -15,8 +18,14 @@ public class Main extends Application {
 //        AlertBox alertBox = new AlertBox("my first","Slay them all");
 //        alertBox.start();
 //
-        ListBox l=new ListBox();
-        l.start();
+        ArrayList<String> res;
+        ArrayList<String> ques = new ArrayList<String>();
+        ques.add("Jack");
+        ques.add("Jimmy");
+        ques.add("John");
+        ListBox listBox = new ListBox("hi","killers",ques);
+        res = listBox.start(SelectionMode.SINGLE);
+        System.out.println(res);
     }
 
 

@@ -9,25 +9,38 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class ListBox
 {
     private Stage window;
-    ListView<String> listView;
-    Scene scene ;
-    Button button;
+    private ListView<String> listView;
+    private Scene scene;
+    private Button button;
+    private String title;
+    private String heading;
+    private ArrayList<String> input;
+    private ArrayList<String> output;
 
-    public void start()
+    public ListBox(String title, String heading, ArrayList<String> input) {
+        this.title = title;
+        this.heading = heading;
+        this.input = input;
+        this.output = new ArrayList<String>();
+    }
+
+    public ArrayList<String> start(SelectionMode selectionMode)
     {
         window = new Stage();
-        window.setTitle("Title of the Window");
+        window.setTitle(title);
 
         //ListView
 
         button = new Button("Submit");
 
-        listView = new javafx.scene.control.ListView<>();
-        listView.getItems().addAll("Iron Man", "Titanic", "Baby", "Uri ");
-        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        listView = new javafx.scene.control.ListView<String>();
+        listView.getItems().addAll(input);
+        listView.getSelectionModel().setSelectionMode(selectionMode);
 
 
         button.setOnAction(e -> buttonClicked());
@@ -38,11 +51,12 @@ public class ListBox
 
         scene = new Scene(layout, 600, 550);
         window.setScene(scene);
-        window.show();
+        window.showAndWait();
+
+        return output;
     }
 
     private void buttonClicked() {
-
 
     /*private void getChoice(ChoiceBox<String> choiceBox) {
 
@@ -50,14 +64,15 @@ public class ListBox
 
         System.out.println(food);
     }*/
-        String message = "";
-        ObservableList<String> movies;
-        movies = listView.getSelectionModel().getSelectedItems();
 
-        for (String m : movies) {
-            message += m + "\n";
+        ObservableList<String> out;
+        out = listView.getSelectionModel().getSelectedItems();
+
+        for (String m : out) {
+            output.add(m);
         }
-        System.out.println(message);
+
+        window.close();
     }
 
 
