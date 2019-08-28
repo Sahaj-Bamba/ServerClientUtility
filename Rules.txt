@@ -9,3 +9,5 @@
 	Enums All caps
 
 	Public Static members ALLCAPS
+	
+	From now on, all public static members will follow lower Camel Case convention
