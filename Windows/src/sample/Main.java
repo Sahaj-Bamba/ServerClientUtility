@@ -1,6 +1,7 @@
 package sample;
 
 import Windows.ConfirmBox;
+import Windows.ListBox;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import Windows.AlertBox;
@@ -14,8 +15,8 @@ public class Main extends Application {
 //        AlertBox alertBox = new AlertBox("my first","Slay them all");
 //        alertBox.start();
 //
-        ConfirmBox confrim= new ConfirmBox("ada","dss");
-        confrim.start();
+        ListBox l=new ListBox();
+        l.start();
     }
 
 
